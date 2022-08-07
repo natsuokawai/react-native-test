@@ -8,6 +8,7 @@ import {
   StatusBar,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 type Message = {
@@ -45,14 +46,20 @@ const HomeScreen = () => {
   );
 };
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+const HomeDrawer = () => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="HomeDrawer" component={HomeScreen} />
+    </Drawer.Navigator>
+  );
+};
 
+const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <HomeDrawer />
     </NavigationContainer>
   );
 };
